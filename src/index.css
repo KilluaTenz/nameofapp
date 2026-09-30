@@ -1,0 +1,256 @@
+:root {
+  --bg: #070b14;
+  --panel: rgba(8, 14, 28, 0.88);
+  --line: rgba(148, 211, 255, 0.28);
+  --text: #eef6ff;
+  --muted: #9fb4cc;
+  --accent: #22d3ee;
+  --danger: #fb7185;
+  --gold: #fbbf24;
+  font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+.game-root {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 20% 20%, #12305a 0%, transparent 42%),
+    radial-gradient(circle at 80% 80%, #2a1050 0%, transparent 38%),
+    #070b14;
+}
+
+.stage {
+  position: relative;
+  width: min(100vw, calc(100vh * 16 / 9));
+  height: min(100vh, calc(100vw * 9 / 16));
+  background: #000;
+  box-shadow: 0 0 80px rgba(34, 211, 238, 0.12);
+}
+
+.stage canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(4, 8, 18, 0.55), rgba(4, 8, 18, 0.82));
+  z-index: 4;
+}
+
+.panel {
+  width: min(560px, 90%);
+  padding: 32px 28px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  backdrop-filter: blur(10px);
+  text-align: center;
+}
+
+.panel h1 {
+  margin: 0 0 8px;
+  letter-spacing: 0.22em;
+  font-size: 42px;
+}
+
+.panel h2 {
+  margin: 0 0 18px;
+  letter-spacing: 0.18em;
+}
+
+.tagline {
+  color: var(--muted);
+  margin: 0 0 24px;
+  letter-spacing: 0.08em;
+}
+
+.controls-help {
+  margin-top: 22px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.btn-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  border: 1px solid var(--line);
+  background: rgba(34, 211, 238, 0.1);
+  color: var(--text);
+  padding: 12px 22px;
+  letter-spacing: 0.14em;
+  cursor: pointer;
+  min-width: 150px;
+}
+
+.btn:hover {
+  background: rgba(34, 211, 238, 0.22);
+}
+
+.btn.ghost {
+  background: transparent;
+}
+
+.hud {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 3;
+  pointer-events: none;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  background: rgba(7, 12, 24, 0.55);
+  min-width: 210px;
+}
+
+.hud .label {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+}
+
+.hud .value {
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.hud .best {
+  margin-top: 6px;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  font-size: 13px;
+}
+
+.top-right {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 5;
+  display: flex;
+  gap: 8px;
+}
+
+.icon-btn {
+  border: 1px solid var(--line);
+  background: rgba(7, 12, 24, 0.55);
+  color: var(--text);
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+}
+
+.name-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0 auto 20px;
+  width: min(320px, 100%);
+  text-align: left;
+}
+
+.name-field label {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+.name-field input {
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+}
+
+.leaderboard {
+  max-height: 320px;
+  overflow: auto;
+  text-align: left;
+  margin: 12px 0 20px;
+}
+
+.leaderboard table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.leaderboard th,
+.leaderboard td {
+  padding: 8px 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.leaderboard th {
+  color: var(--muted);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+}
+
+.stat-block {
+  margin: 8px 0 22px;
+}
+
+.stat-block .big {
+  font-size: 36px;
+  color: var(--accent);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.debug-panel {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 3;
+  pointer-events: none;
+  padding: 12px 14px;
+  background: rgba(0, 0, 0, 0.62);
+  border: 1px solid rgba(255, 80, 80, 0.55);
+  color: #9dffb0;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 12px;
+  line-height: 1.45;
+  white-space: pre;
+}
+
+.notice {
+  margin-top: 10px;
+  color: #fcd34d;
+  font-size: 12px;
+}
